@@ -1,5 +1,7 @@
 # S-Serialization
 
+cl-prevalence から切り出しました。
+
 ## Usage
 
 ## Installation
