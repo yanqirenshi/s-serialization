@@ -4,7 +4,9 @@
                     breadcrumb-hide={headerBreadcrumbHide()}
                     section-code={sectionCode()}>
         <h2 class="subtitle">
-            <p class="{opts.subtitleHide}">...</p>
+            <p class="{opts.subtitleHide}">
+                オペレータのマニュアルです。
+            </p>
             <nav class="breadcrumb {opts.breadcrumbHide}" aria-label="breadcrumbs">
                 <ul>
                     <li><a href="#page03">operators > </a></li>
@@ -43,7 +45,6 @@
      }
      this.sectionCode = ()=> {
          let state = STORE.state().get('pages').page03;
-         dump(state.section);
          return state.section=='root' ? '' : state.section;
      }
      this.on('update', ()=>{
@@ -53,7 +54,7 @@
 
          for (var k in tags) {
              let tag = tags[k];
-             if (tag.opts.type=='page-section') {
+             if (tag.opts && tag.opts.type && tag.opts.type=='page-section') {
                  let element = tag.root;
                  let classes = element.getAttribute('class');
                  element.setAttribute('class', (k==section ? '' : 'hide'))

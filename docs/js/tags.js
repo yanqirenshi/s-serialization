@@ -47,7 +47,7 @@ riot.tag2('section-3', '<section class="section"> <div class="container"> <h1 cl
 riot.tag2('section-4', '<section class="section"> <div class="container"> <h1 class="title is-4">{opts.title}</h1> <yield></yield> </div> </section>', 'section-4 section4 > section.section,[data-is="section-4"] section4 > section.section{ padding: 1rem 1.5rem; }', '', function(opts) {
 });
 
-riot.tag2('section-footer', '<footer class="footer"> <div class="container"> <div class="content has-text-centered"> Footer ........ </div> </div> </footer>', '', '', function(opts) {
+riot.tag2('section-footer', '<footer class="footer"> <div class="container"> <div class="content has-text-centered"> Footer ........ </div> </div> </footer>', 'section-footer > footer.footer{ background: #eeeeee; }', '', function(opts) {
 });
 
 riot.tag2('section-header', '<section class="section"> <div class="container"> <h1 class="title is-2">{opts.title}</h1> <yield></yield> </div> </section>', 'section-header > section.section{ background: #eeeeee; }', '', function(opts) {
@@ -76,7 +76,7 @@ riot.tag2('operator-list', '<table class="table is-bordered is-striped is-narrow
 riot.tag2('operators-matrix1', '<table class="table is-bordered is-striped is-narrow is-hoverable"> <thead> <tr> </tr> </thead> <tbody> <tr> </tr> </tbody> </table>', '', '', function(opts) {
 });
 
-riot.tag2('operators-root', '<section-3 title="Description"> <h2 class="subtitle"></h2> <div class="contents"> </div> </section-3> <section-3 title="List" data="{operators()}"> <h2 class="subtitle">オペレータの一覧です。</h2> <section-4 title="Read" data="{opts.data}"> <h2 class="subtitle"></h2> <div class="contents"> <operator-list data="{opts.data}"></operator-list> </div> </section-4> </section-3>', '', '', function(opts) {
+riot.tag2('operators-root', '<section-3 title="Description"> <h2 class="subtitle"></h2> <div class="contents"> <p>(たぶん)オペレータは以下の三つに分類できます。</p> <p>(1) シリアライズ</p> <p>(2) デシリアライズ</p> <p>(3) ステート</p> </div> </section-3> <section-3 title="List" data="{operators()}"> <h2 class="subtitle">オペレータの一覧です。</h2> <div class="contents"> <operator-list data="{opts.data}"></operator-list> </div> </section-3>', '', '', function(opts) {
      this.operators = ()=>{
          let operators = STORE.state().get('operators');
          let targets = []
@@ -114,7 +114,7 @@ riot.tag2('page02', '<section-header title="CLASSES"> <h2 class="subtitle"> </h2
      };
 });
 
-riot.tag2('page03', '<section-header title="OPERATORS" subtitle-hide="{headerSubtitleHide()}" breadcrumb-hide="{headerBreadcrumbHide()}" section-code="{sectionCode()}"> <h2 class="subtitle"> <p class="{opts.subtitleHide}">...</p> <nav class="breadcrumb {opts.breadcrumbHide}" aria-label="breadcrumbs"> <ul> <li><a href="#page03">operators > </a></li> <li class="is-active"><a href="#" aria-current="page">{opts.sectionCode}</a></li> </ul> </nav> </h2> </section-header> <operators-root type="page-section" class="hide"></operators-root> <deserialize-sexp type="page-section" class="hide"></deserialize-sexp> <deserialize-xml type="page-section" class="hide"></deserialize-xml> <make-serialization-state type="page-section" class="hide"></make-serialization-state> <reset-known-slots type="page-section" class="hide"></reset-known-slots> <serializable-slots type="page-section" class="hide"></serializable-slots> <serialize-sexp type="page-section" class="hide"></serialize-sexp> <serialize-sexp-internal type="page-section" class="hide"></serialize-sexp-internal> <serialize-xml type="page-section" class="hide"></serialize-xml> <serialize-xml-internal type="page-section" class="hide"></serialize-xml-internal> <section-footer type="page-section" class="hide"></section-footer> <section-footer></section-footer>', 'page03 .hide { display:none; }', '', function(opts) {
+riot.tag2('page03', '<section-header title="OPERATORS" subtitle-hide="{headerSubtitleHide()}" breadcrumb-hide="{headerBreadcrumbHide()}" section-code="{sectionCode()}"> <h2 class="subtitle"> <p class="{opts.subtitleHide}"> オペレータのマニュアルです。 </p> <nav class="breadcrumb {opts.breadcrumbHide}" aria-label="breadcrumbs"> <ul> <li><a href="#page03">operators > </a></li> <li class="is-active"><a href="#" aria-current="page">{opts.sectionCode}</a></li> </ul> </nav> </h2> </section-header> <operators-root type="page-section" class="hide"></operators-root> <deserialize-sexp type="page-section" class="hide"></deserialize-sexp> <deserialize-xml type="page-section" class="hide"></deserialize-xml> <make-serialization-state type="page-section" class="hide"></make-serialization-state> <reset-known-slots type="page-section" class="hide"></reset-known-slots> <serializable-slots type="page-section" class="hide"></serializable-slots> <serialize-sexp type="page-section" class="hide"></serialize-sexp> <serialize-sexp-internal type="page-section" class="hide"></serialize-sexp-internal> <serialize-xml type="page-section" class="hide"></serialize-xml> <serialize-xml-internal type="page-section" class="hide"></serialize-xml-internal> <section-footer type="page-section" class="hide"></section-footer> <section-footer></section-footer>', 'page03 .hide { display:none; }', '', function(opts) {
      this.headerSubtitleHide = ()=> {
          let state = STORE.state().get('pages').page03;
          return state.section=='root' ? '' : 'hide';
@@ -125,7 +125,6 @@ riot.tag2('page03', '<section-header title="OPERATORS" subtitle-hide="{headerSub
      }
      this.sectionCode = ()=> {
          let state = STORE.state().get('pages').page03;
-         dump(state.section);
          return state.section=='root' ? '' : state.section;
      }
      this.on('update', ()=>{
@@ -135,7 +134,7 @@ riot.tag2('page03', '<section-header title="OPERATORS" subtitle-hide="{headerSub
 
          for (var k in tags) {
              let tag = tags[k];
-             if (tag.opts.type=='page-section') {
+             if (tag.opts && tag.opts.type && tag.opts.type=='page-section') {
                  let element = tag.root;
                  let classes = element.getAttribute('class');
                  element.setAttribute('class', (k==section ? '' : 'hide'))
