@@ -15,7 +15,8 @@ class Store extends Vanilla_Redux_Store {
                 },
                 page03: {
                     name: 'Page 3',
-                    active: false
+                    active: false,
+                    section: 'root'
                 }
             },
             classes: _CLASSES,
