@@ -49,6 +49,10 @@
   (declare (ignore serialization-state))
   (print-symbol object stream))
 
+(defmethod serialize-sexp-internal ((object number) stream serialize-sexp-internal)
+  (declare (ignore serialize-sexp-internal))
+  (prin1 object stream))
+
 ;;; generic sequences
 (defmethod serialize-sexp-internal ((object sequence) stream serialization-state)
   (flet ((proper-sequence (length)
