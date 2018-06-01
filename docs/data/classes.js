@@ -1,3 +1,3 @@
 let _CLASSES = [
-    { name: '', description: '', package: ''},
+    { name: 'serialization-state', description: '', package: 's-serialization'},
 ];

@@ -12,13 +12,13 @@
         </div>
     </section-3>
 
-    <section-3 title="クラス図">
-        <h2 class="subtitle"></h2>
-        <div class="contents">
-            <class-diagram>
-            </class-diagram>
-        </div>
-    </section-3>
+    <serialization-state></serialization-state>
+
+    <get-xml-parser-state></get-xml-parser-state>
+    <reset></reset>
+    <reset-known-slots></reset-known-slots>
+    <known-object-id></known-object-id>
+    <set-known-object></set-known-object>
 
     <section-footer></section-footer>
 

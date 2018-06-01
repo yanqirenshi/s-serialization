@@ -10,7 +10,9 @@
             <nav class="breadcrumb {opts.breadcrumbHide}" aria-label="breadcrumbs">
                 <ul>
                     <li><a href="#page03">operators > </a></li>
-                    <li class="is-active"><a href="#" aria-current="page">{opts.sectionCode}</a></li>
+                    <li class="is-active">
+                        <a href="#" aria-current="page">{opts.sectionCode}</a>
+                    </li>
                 </ul>
             </nav>
         </h2>

@@ -22,7 +22,7 @@
          let operators = STORE.state().get('operators');
          let targets = []
          for (var i in operators)
-             if (operators[i].display)
+             // if (operators[i].display)
                  targets.push(operators[i]);
          return targets;
      };
