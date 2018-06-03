@@ -9,7 +9,7 @@
             <div class="contents">
                 <p><a href="#page03/serialize-sexp-internal">serialize-sexp-internal</a> をコールして object をS式(文字列)に変換します。</p>
                 <p>文字列に変換したものを stream に出力します。</p>
-                sexp は<a href="https://en.wikipedia.org/wiki/S-expression">S式</a>のことです。
+                sexp は<a href="https://www.emacswiki.org/emacs/Sexp#sexp">S式</a>のことです。
             </div>
         </section-4>
 
