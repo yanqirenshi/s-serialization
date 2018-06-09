@@ -22,9 +22,24 @@ Author: satoshi iwasaki (yanqirenshi@gmail.com)
                 ((:file "package")
                  (:file "serialization")
                  (:file "xml")
-                 (:module "sexp" :components ((:file "sexp")
-                                              (:file "serialize-sexp-internal.lisp")
-                                              (:file "deserialize-sexp-internal.lisp"))))))
+                 (:module "sexp"
+                  :components ((:file "sexp")
+                               (:file "serialize-sexp-internal.lisp")
+                               (:module "serialize-xml-internal"
+                                        :components ((:file "integer")
+                                                     (:file "ratio")
+                                                     (:file "float")
+                                                     (:file "complex")
+                                                     (:file "null")
+                                                     (:file "t")
+                                                     (:file "string")
+                                                     (:file "character")
+                                                     (:file "symbol")
+                                                     (:file "sequence")
+                                                     (:file "hash-table")
+                                                     (:file "structure-object")
+                                                     (:file "standard-object"))
+                               (:file "deserialize-sexp-internal.lisp"))))))
   :description ""
   :long-description
   #.(with-open-file (stream (merge-pathnames

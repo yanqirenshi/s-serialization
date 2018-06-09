@@ -1,0 +1,26 @@
+(in-package :s-serialization)
+
+(defmethod serialize-xml-internal ((object hash-table) stream serialization-state)
+  (let ((id (known-object-id serialization-state object)))
+    (if id
+        (progn
+          (write-string "<REF ID=\"" stream)
+          (prin1 id stream)
+          (write-string "\"/>" stream))
+        (progn
+          (setf id (set-known-object serialization-state object))
+          (write-string "<HASH-TABLE ID=\"" stream)
+          (prin1 id stream)
+          (write-string "\" TEST=\"" stream)
+          (print-symbol-xml (hash-table-test object) stream)
+          (write-string "\" SIZE=\"" stream)
+          (prin1 (hash-table-size object) stream)
+          (write-string "\">" stream)
+          (maphash #'(lambda (key value)
+                       (write-string "<ENTRY><KEY>" stream)
+                       (serialize-xml-internal key stream serialization-state)
+                       (write-string "</KEY><VALUE>" stream)
+                       (serialize-xml-internal value stream serialization-state)
+                       (princ "</VALUE></ENTRY>" stream))
+                   object)
+          (write-string "</HASH-TABLE>" stream)))))
