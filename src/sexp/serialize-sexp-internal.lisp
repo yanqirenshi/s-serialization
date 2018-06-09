@@ -1,34 +1,5 @@
 (in-package :s-serialization)
 
-(defun serialize-sexp (object stream &optional (serialization-state (make-serialization-state)))
-  "Write a serialized version of object to stream using s-expressions, optionally reusing a serialization-state"
-  (reset serialization-state)
-  (serialize-sexp-internal object stream serialization-state))
-
-(defun deserialize-sexp (stream &optional (serialization-state (make-serialization-state)))
-  "Read and return an s-expression serialized version of a lisp object from stream, optionally reusing a serialization state"
-  (reset serialization-state)
-  (let ((sexp (read stream nil :eof)))
-    (if (eq sexp :eof)
-        nil
-        (deserialize-sexp-internal sexp (get-hashtable serialization-state)))))
-
-(defun print-symbol (symbol stream)
-  (let ((package (symbol-package symbol))
-        (name (prin1-to-string symbol)))
-    (cond ((eq package +cl-package+) (write-string "CL:" stream))
-          ((eq package +keyword-package+) (write-char #\: stream))
-          (package (s-xml:print-string-xml (package-name package) stream)
-                   (write-string "::" stream))
-          (t (write-string "#:" stream)))
-    (if (char= (char name (1- (length name))) #\|)
-        (write-string name stream :start (position #\| name))
-        (write-string name stream :start (1+ (or (position #\: name :from-end t) -1))))))
-
-
-;;;; SERIALIZATION
-
-;;; basic serializers
 (defmethod serialize-sexp-internal ((object null) stream serialization-state)
   (declare (ignore serialization-state))
   (write-string "NIL" stream))
@@ -172,51 +143,3 @@
                         (serialize-sexp-internal (slot-value object slot) stream serialization-state)
                         (write-string ")" stream))))
           (write-string " ) )" stream)))))
-
-
-;;;; DESERIALIZATION
-
-(defun deserialize-sexp-internal (sexp deserialized-objects)
-  (if (atom sexp)
-      sexp
-      (ecase (first sexp)
-        (:sequence (destructuring-bind (id &key class size elements) (rest sexp)
-                     (let ((sequence (make-sequence class size)))
-                       (setf (gethash id deserialized-objects) sequence)
-                       (map-into sequence
-                                 #'(lambda (x) (deserialize-sexp-internal x deserialized-objects))
-                                 elements))))
-        (:hash-table (destructuring-bind (id &key test size rehash-size rehash-threshold entries) (rest sexp)
-                       (let ((hash-table (make-hash-table :size size
-                                                          :test test
-                                                          :rehash-size rehash-size
-                                                          :rehash-threshold rehash-threshold)))
-                         (setf (gethash id deserialized-objects) hash-table)
-                         (dolist (entry entries)
-                           (setf (gethash (deserialize-sexp-internal (first entry) deserialized-objects) hash-table)
-                                 (deserialize-sexp-internal (rest entry) deserialized-objects)))
-                         hash-table)))
-        (:object (destructuring-bind (id &key class slots) (rest sexp)
-                   (let ((object (make-instance class)))
-                     (setf (gethash id deserialized-objects) object)
-                     (dolist (slot slots)
-                       (when (slot-exists-p object (first slot))
-                         (setf (slot-value object (first slot))
-                               (deserialize-sexp-internal (rest slot) deserialized-objects))))
-                     object)))
-        (:struct (destructuring-bind (id &key class slots) (rest sexp)
-                   (let ((object (funcall (intern (concatenate 'string "MAKE-" (symbol-name class))
-                                                  (symbol-package class)))))
-                     (setf (gethash id deserialized-objects) object)
-                     (dolist (slot slots)
-                       (when (slot-exists-p object (first slot))
-                         (setf (slot-value object (first slot))
-                               (deserialize-sexp-internal (rest slot) deserialized-objects))))
-                     object)))
-        (:cons (destructuring-bind (id cons-car cons-cdr) (rest sexp)
-                 (let ((conspair (cons nil nil)))
-                   (setf (gethash id deserialized-objects)
-                         conspair)
-                   (rplaca conspair (deserialize-sexp-internal cons-car deserialized-objects))
-                   (rplacd conspair (deserialize-sexp-internal cons-cdr deserialized-objects)))))
-        (:ref (gethash (rest sexp) deserialized-objects)))))

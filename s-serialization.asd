@@ -20,10 +20,11 @@ Author: satoshi iwasaki (yanqirenshi@gmail.com)
   :components ((:module "src"
                 :components
                 ((:file "package")
-                 (:file "serialization" :depends-on ("package"))
-
-                 (:file "xml"           :depends-on ("serialization"))
-                 (:file "sexp"          :depends-on ("serialization")))))
+                 (:file "serialization")
+                 (:file "xml")
+                 (:module "sexp" :components ((:file "sexp")
+                                              (:file "serialize-sexp-internal.lisp")
+                                              (:file "deserialize-sexp-internal.lisp"))))))
   :description ""
   :long-description
   #.(with-open-file (stream (merge-pathnames
