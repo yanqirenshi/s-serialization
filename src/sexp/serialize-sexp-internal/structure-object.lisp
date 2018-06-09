@@ -1,0 +1,25 @@
+(in-package :s-serialization)
+
+(defmethod serialize-sexp-internal ((object structure-object) stream serialization-state)
+  (let ((id (known-object-id serialization-state object)))
+    (if id
+        (progn
+          (write-string "(:REF . " stream)
+          (prin1 id stream)
+          (write-string ")" stream))
+        (let ((serializable-slots (get-serializable-slots serialization-state object)))
+          (setf id (set-known-object serialization-state object))
+          (write-string "(:STRUCT " stream)
+          (prin1 id stream)
+          (write-string " :CLASS " stream)
+          (print-symbol (class-name (class-of object)) stream)
+          (when serializable-slots
+            (write-string " :SLOTS (" stream)
+            (mapc #'(lambda (slot)
+                      (write-string " (" stream)
+                      (print-symbol slot stream)
+                      (write-string " . " stream)
+                      (serialize-sexp-internal (slot-value object slot) stream serialization-state)
+                      (write-string ")" stream))
+                  serializable-slots))
+          (write-string " ) )" stream)))))

@@ -21,6 +21,13 @@
         </div>
     </section-3>
 
+    <section-3 title="データ・タイプ"  data={operators()}>
+        <div class="contents">
+            <p></p>
+            <serialize-type-matrix></serialize-type-matrix>
+        </div>
+    </section-3>
+
     <section-3 title="Dictionaries"  data={operators()}>
         <div class="contents">
             <operator-list data={opts.data}></operator-list>
@@ -33,7 +40,7 @@
          let targets = []
          for (var i in operators)
              // if (operators[i].display)
-                 targets.push(operators[i]);
+             targets.push(operators[i]);
          return targets;
      };
     </script>

@@ -106,13 +106,13 @@ riot.tag2('operator-list', '<table class="table is-bordered is-striped is-narrow
 riot.tag2('operators-matrix1', '<table class="table is-bordered is-striped is-narrow is-hoverable"> <thead> <tr> </tr> </thead> <tbody> <tr> </tr> </tbody> </table>', '', '', function(opts) {
 });
 
-riot.tag2('operators-root', '<section-3 title="Description"> <h2 class="subtitle"></h2> <div class="contents"> <p>(たぶん)オペレータは以下の三つに分類できます。</p> <p>(1) シリアライズ</p> <p>(2) デシリアライズ</p> <p>(3) ステート</p> </div> </section-3> <section-3 title="オペレータ" data="{operators()}"> <div class="contents"> <p> XMLのデシリアライズの internal が存在しません。<br> 制作途中で事切れたのでしょうか。 </p> <core-operator-list></core-operator-list> </div> </section-3> <section-3 title="Dictionaries" data="{operators()}"> <div class="contents"> <operator-list data="{opts.data}"></operator-list> </div> </section-3>', '', '', function(opts) {
+riot.tag2('operators-root', '<section-3 title="Description"> <h2 class="subtitle"></h2> <div class="contents"> <p>(たぶん)オペレータは以下の三つに分類できます。</p> <p>(1) シリアライズ</p> <p>(2) デシリアライズ</p> <p>(3) ステート</p> </div> </section-3> <section-3 title="オペレータ" data="{operators()}"> <div class="contents"> <p> XMLのデシリアライズの internal が存在しません。<br> 制作途中で事切れたのでしょうか。 </p> <core-operator-list></core-operator-list> </div> </section-3> <section-3 title="データ・タイプ" data="{operators()}"> <div class="contents"> <p></p> <serialize-type-matrix></serialize-type-matrix> </div> </section-3> <section-3 title="Dictionaries" data="{operators()}"> <div class="contents"> <operator-list data="{opts.data}"></operator-list> </div> </section-3>', '', '', function(opts) {
      this.operators = ()=>{
          let operators = STORE.state().get('operators');
          let targets = []
          for (var i in operators)
 
-                 targets.push(operators[i]);
+             targets.push(operators[i]);
          return targets;
      };
 });
@@ -136,6 +136,9 @@ riot.tag2('serialize-sexp-internal', '<section-3 title="Generic Function: SERIAL
 });
 
 riot.tag2('serialize-sexp', '<section-3 title="Function: SERIALIZE-SEXP"> <div class="contents"> <pre>serialize-sexp object stream &optional serialization-state</pre> </div> <section-4 title="Description"> <div class="contents"> <p><a href="#page03/serialize-sexp-internal">serialize-sexp-internal</a> をコールして object をS式(文字列)に変換します。</p> <p>文字列に変換したものを stream に出力します。</p> sexp は<a href="https://www.emacswiki.org/emacs/Sexp#sexp">S式</a>のことです。 </div> </section-4> <section-4 title="Arguments"> <div class="contents"> <table class="table"> <thead> <tr> <th>Name</th> <th>Description</th> </tr> </thead> <tbody> <tr> <th>object</th> <td></td> </tr> <tr> <th>stream</th> <td></td> </tr> <tr> <th>serialization-state</th> <td>初期値: (make-serialization-state)</td> </tr> </tbody> </table> </div> </section-4> </section-3>', '', '', function(opts) {
+});
+
+riot.tag2('serialize-type-matrix', '<table class="table is-bordered is-striped is-narrow is-hoverable"> <thead> <tr> <th colspan="3">Sexp</th> <th colspan="2">Xml</th> </tr> <tr> <th>type</ty> <th>keyword</ty> <th>value</ty> <th>type</ty> <th>tag</ty> </tr> </thead> <tbody> <tr> <th>null</th> <td>---</td> <td>"NIL"</td> <th>null</th> <td>&lt;NULL/&gt;</td> </tr> <tr> <th>t</th> <td>---</td> <td>"T"</td> <th>t</th> <td>&lt;TRUE/&gt;</td> </tr> <tr> <th>symbol</th> <td>---</td> <td>print-symbol</td> <th>symbol</th> <td>&lt;SYMBOL&gt;</td> </tr> <tr> <th>character</th> <td>---</td> <td>prin1</td> <th>character</th> <td>&lt;CHARACTER&gt; </td> </tr> <tr> <th>string</th> <td>---</td> <td>prin1</td> <th>string</th> <td>&lt;STRING&gt;</td> </tr> <tr> <th rowspan="4">number</th> <td rowspan="4">---</td> <td rowspan="4">prin1</td> <th>complex</th> <td>&lt;COMPLEX&gt;</td> </tr> <tr> <th>float</th> <td>&lt;FLOAT&gt;</td> </tr> <tr> <th>integer</th> <td>&lt;INT&gt;</td> </tr> <tr> <th>ratio</th> <td>&lt;RATIO&gt;</td> </tr> <tr> <th>hash-table</th> <td>:HASH-TABLE</td> <td></td> <th>hash-table</th> <td>&lt;HASH-TABLE&gt;</td> </tr> <tr> <th>sequence</th> <td>:SEQUENCE</td> <td></td> <th>sequence</th> <td>&lt;SEQUENCE&gt;</td> </tr> <tr> <th>standard-object</th> <td>:OBJECT</td> <td></td> <th>standard-object</th> <td>&lt;OBJECT&gt;</td> </tr> <tr> <th>structure-object</th> <td>:STRUCT</td> <td></td> <th>structure-object</th> <td>&lt;STRUCT&gt;</td> </tr> </tbody> </table>', '', '', function(opts) {
 });
 
 riot.tag2('serialize-xml-a', '<a href="#page03/serialize-xml">SERIALIZE-XML</a>', '', '', function(opts) {
