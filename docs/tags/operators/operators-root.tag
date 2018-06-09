@@ -8,10 +8,20 @@
             <p>(2) デシリアライズ</p>
             <p>(3) ステート</p>
         </div>
+
     </section-3>
 
-    <section-3 title="List"  data={operators()}>
-        <h2 class="subtitle">オペレータの一覧です。</h2>
+    <section-3 title="オペレータ"  data={operators()}>
+        <div class="contents">
+            <p>
+                XMLのデシリアライズの internal が存在しません。<br/>
+                制作途中で事切れたのでしょうか。
+            </p>
+            <core-operator-list></core-operator-list>
+        </div>
+    </section-3>
+
+    <section-3 title="Dictionaries"  data={operators()}>
         <div class="contents">
             <operator-list data={opts.data}></operator-list>
         </div>

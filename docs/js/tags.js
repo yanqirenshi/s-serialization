@@ -62,7 +62,22 @@ riot.tag2('section-footer', '<footer class="footer"> <div class="container"> <di
 riot.tag2('section-header', '<section class="section"> <div class="container"> <h1 class="title is-2">{opts.title}</h1> <yield></yield> </div> </section>', 'section-header > section.section{ background: #eeeeee; }', '', function(opts) {
 });
 
+riot.tag2('core-operator-list', '<table class="table is-bordered is-striped is-narrow is-hoverable"> <thead> <th>Type</th> <th>Action</th> <th>Root</th> <th>Internal</th> </thead> <tbody> <tr> <th rowspan="2">sexp</th> <th>serialize</th> <td><serialize-sexp-a></serialize-sexp-a></td> <td><serialize-sexp-internal-a></serialize-sexp-internal-a></td> </tr> <tr> <th>deserialize</th> <td><deserialize-sexp-a></deserialize-sexp-a></td> <td><deserialize-sexp-internal></deserialize-sexp-internal></td> </tr> <tr> <th rowspan="2">xml</th> <th>serialize</th> <td><serialize-xml-a></serialize-xml-a></td> <td><serialize-xml-internal-a></serialize-xml-internal-a></td> </tr> <tr> <th>deserialize</th> <td><deserialize-xml-a></deserialize-xml-a></td> <td>--</td> </tr> </tbody> </table>', '', '', function(opts) {
+});
+
+riot.tag2('deserialize-sexp-a', '<a href="#page03/deserialize-sexp">DESERIALIZE-SEXP</a>', '', '', function(opts) {
+});
+
+riot.tag2('deserialize-sexp-internal', '<a href="#page03/deserialize-sexp-internal">DESERIALIZE-SEXP-INTERNAL</a>', '', '', function(opts) {
+});
+
 riot.tag2('deserialize-sexp', '<section-3 title="Function: DESERIALIZE-SEXP"> </section-3>', '', '', function(opts) {
+});
+
+riot.tag2('deserialize-xml-a', '<a href="#page03/deserialize-xml">DESERIALIZE-XML</a>', '', '', function(opts) {
+});
+
+riot.tag2('deserialize-xml-internal-a', '<a href="#page03/deserialize-xml-internal">DESERIALIZE-XML-INTERNAL</a>', '', '', function(opts) {
 });
 
 riot.tag2('deserialize-xml', '<section-3 title="Function: DESERIALIZE-XML"> </section-3>', '', '', function(opts) {
@@ -91,7 +106,7 @@ riot.tag2('operator-list', '<table class="table is-bordered is-striped is-narrow
 riot.tag2('operators-matrix1', '<table class="table is-bordered is-striped is-narrow is-hoverable"> <thead> <tr> </tr> </thead> <tbody> <tr> </tr> </tbody> </table>', '', '', function(opts) {
 });
 
-riot.tag2('operators-root', '<section-3 title="Description"> <h2 class="subtitle"></h2> <div class="contents"> <p>(たぶん)オペレータは以下の三つに分類できます。</p> <p>(1) シリアライズ</p> <p>(2) デシリアライズ</p> <p>(3) ステート</p> </div> </section-3> <section-3 title="List" data="{operators()}"> <h2 class="subtitle">オペレータの一覧です。</h2> <div class="contents"> <operator-list data="{opts.data}"></operator-list> </div> </section-3>', '', '', function(opts) {
+riot.tag2('operators-root', '<section-3 title="Description"> <h2 class="subtitle"></h2> <div class="contents"> <p>(たぶん)オペレータは以下の三つに分類できます。</p> <p>(1) シリアライズ</p> <p>(2) デシリアライズ</p> <p>(3) ステート</p> </div> </section-3> <section-3 title="オペレータ" data="{operators()}"> <div class="contents"> <p> XMLのデシリアライズの internal が存在しません。<br> 制作途中で事切れたのでしょうか。 </p> <core-operator-list></core-operator-list> </div> </section-3> <section-3 title="Dictionaries" data="{operators()}"> <div class="contents"> <operator-list data="{opts.data}"></operator-list> </div> </section-3>', '', '', function(opts) {
      this.operators = ()=>{
          let operators = STORE.state().get('operators');
          let targets = []
@@ -111,10 +126,22 @@ riot.tag2('reset', '<section-3 title="Generic Function: RESET"> </section-3>', '
 riot.tag2('serializable-slots', '<section-3 title="Generic Function: SERIALIZABLE-SLOTS"> <div class="contents"> <pre>serializable-slots object</pre> </div> <section-4 title="Description"> <div class="contents"> </div> </section-4> <section-4 title="Methods"> <div class="contents"> <table class="table"> <thead> <tr> <th>Object</th> </tr> </thead> <tbody> <tr><td>structure-object</td></tr> <tr><td>standard-object</td></tr> </tbody> </table> </div> </section-4> </section-3>', '', '', function(opts) {
 });
 
+riot.tag2('serialize-sexp-a', '<a href="#page03/serialize-sexp">SERIALIZE-SEXP</a>', '', '', function(opts) {
+});
+
+riot.tag2('serialize-sexp-internal-a', '<a href="#page03/serialize-sexp-internal">SERIALIZE-SEXP-INTERNAL</a>', '', '', function(opts) {
+});
+
 riot.tag2('serialize-sexp-internal', '<section-3 title="Generic Function: SERIALIZE-SEXP-INTERNAL"> <div class="contents"> <pre>serialize-xml-internal object stream serialization-state</pre> </div> <section-4 title="Description"> <div class="contents"> </div> </section-4> <section-4 title="Methods"> <div class="contents"> <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"> <thead> <tr> <th colspan="3">Arguments</th> <th rowspan="2">Description</th> </tr> <tr> <th>Object</th> <th>stream</th> <th>serialization-state</th> </tr> </thead> <tbody> <tr><td>null</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>(eql \'t)</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>string</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>character</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>symbol</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>sequence</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>hash-table</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>structure-object</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>standard-object</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>number</td> <td>stream</td> <td>serialize-sexp-internal</td> <td></td></tr> </tbody> </table> </div> </section-4> </section-3>', '', '', function(opts) {
 });
 
 riot.tag2('serialize-sexp', '<section-3 title="Function: SERIALIZE-SEXP"> <div class="contents"> <pre>serialize-sexp object stream &optional serialization-state</pre> </div> <section-4 title="Description"> <div class="contents"> <p><a href="#page03/serialize-sexp-internal">serialize-sexp-internal</a> をコールして object をS式(文字列)に変換します。</p> <p>文字列に変換したものを stream に出力します。</p> sexp は<a href="https://www.emacswiki.org/emacs/Sexp#sexp">S式</a>のことです。 </div> </section-4> <section-4 title="Arguments"> <div class="contents"> <table class="table"> <thead> <tr> <th>Name</th> <th>Description</th> </tr> </thead> <tbody> <tr> <th>object</th> <td></td> </tr> <tr> <th>stream</th> <td></td> </tr> <tr> <th>serialization-state</th> <td>初期値: (make-serialization-state)</td> </tr> </tbody> </table> </div> </section-4> </section-3>', '', '', function(opts) {
+});
+
+riot.tag2('serialize-xml-a', '<a href="#page03/serialize-xml">SERIALIZE-XML</a>', '', '', function(opts) {
+});
+
+riot.tag2('serialize-xml-internal-a', '<a href="#page03/serialize-xml-internal">SERIALIZE-XML-INTERNAL</a>', '', '', function(opts) {
 });
 
 riot.tag2('serialize-xml-internal', '<section-3 title="Generic Function: SERIALIZE-XML-INTERNAL"> <div class="contents"> <pre>serialize-xml-internal object stream serialization-state</pre> </div> <section-4 title="Description"> <div class="contents"> <p>object を文字列に変換します。</p> <p>文字列に変換したものを stream に出力します。</p> </div> </section-4> <section-4 title="Methods"> <div class="contents"> <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"> <thead> <tr> <th colspan="3">Arguments</th> <th rowspan="2">description</th> </tr> <tr> <th>Object</th> <th>stream</th> <th>serialization-state</th> </tr> </thead> <tbody> <tr><td>integer</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>ratio</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>float</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>complex</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>null</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>(eql \'t)</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>string</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>character</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>symbol</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>sequence</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>hash-table</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>structure-object</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> <tr><td>standard-object</td> <td>stream</td> <td>serialization-state</td> <td></td></tr> </tbody> </table> </div> </section-4> </section-3>', '', '', function(opts) {
