@@ -13,7 +13,7 @@
             <tr each="{data()}">
                 <td style="{exportStyle(export)}"></td>
                 <td>{type}</td>
-                <td><a href="#page03/{name}">{name.toUpperCase()}</a></td>
+                <td><a href="#page05/{name}">{name.toUpperCase()}</a></td>
                 <td>{description}</td>
                 <td>{file}</td>
             </tr>

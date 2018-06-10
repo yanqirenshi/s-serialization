@@ -1,67 +1,66 @@
 <page03>
-    <section-header title="OPERATORS"
-                    subtitle-hide={headerSubtitleHide()}
-                    breadcrumb-hide={headerBreadcrumbHide()}
-                    section-code={sectionCode()}>
+    <section-header title="カスタマイズ">
         <h2 class="subtitle">
-            <p class="{opts.subtitleHide}">
-                オペレータのマニュアルです。
-            </p>
-            <nav class="breadcrumb {opts.breadcrumbHide}" aria-label="breadcrumbs">
-                <ul>
-                    <li><a href="#page03">operators > </a></li>
-                    <li class="is-active">
-                        <a href="#" aria-current="page">{opts.sectionCode}</a>
-                    </li>
-                </ul>
-            </nav>
+            カスタマイズの方法について説明します。
         </h2>
     </section-header>
 
-    <operators-root type="page-section" class="hide"></operators-root>
-    <deserialize-sexp type="page-section" class="hide"></deserialize-sexp>
-    <deserialize-xml type="page-section" class="hide"></deserialize-xml>
-    <make-serialization-state type="page-section" class="hide"></make-serialization-state>
-    <reset-known-slots type="page-section" class="hide"></reset-known-slots>
-    <serializable-slots type="page-section" class="hide"></serializable-slots>
-    <serialize-sexp type="page-section" class="hide"></serialize-sexp>
-    <serialize-sexp-internal type="page-section" class="hide"></serialize-sexp-internal>
-    <serialize-xml type="page-section" class="hide"></serialize-xml>
-    <serialize-xml-internal type="page-section" class="hide"></serialize-xml-internal>
-    <section-footer type="page-section" class="hide"></section-footer>
+    <section-container title="概要">
+        <section-contents>
+            <p>データタイプを増やすことでカスタマイズが可能。</p>
+            <p>シリアライズのカスタマイズは <code>*-internal</code> でカスタマイズが可能</p>
+            <p>デシリアライズの場合は -aux でカスタマイズが可能。</p>
+        </section-contents>
+    </section-container>
 
-    <section-footer></section-footer>
+    <section-container title="カスタマイズ">
+        <section-contents no="4" title="構造">
+            <p>
+                シリアライズ/デシリアライズのオペレータは以下の様な構成になっています。<br/>
+                以下の例は XML ですが SEXP でも同じ構成です。
+            </p>
+            <p>
+                <a>serialize-xml</a> ---call---> <a>serialize-xml-internal</a>
+            </p>
+            <p>
+                <a>deserialize-xml</a> ---call---> <a>serialize-xml-internal</a>
+            </p>
+            <p>
+                例えば、XML へのシリアライズの内容を変更したい場合は <a>serialize-xml-internal</a> をオーバーライドすると良いです。
+            </p>
+            <p>
+                また <a>serialize-xml-internal</a> は Generic Function なので、クラス毎でのカスタマイズが可能です。
+            </p>
+            <p>
+                デシリアライズに関しても同じことが言えます。
+            </p>
+        </section-contents>
 
-    <style>
-     page03 .hide { display:none; }
-    </style>
-
-    <script>
-     this.headerSubtitleHide = ()=> {
-         let state = STORE.state().get('pages').page03;
-         return state.section=='root' ? '' : 'hide';
-     }
-     this.headerBreadcrumbHide = ()=> {
-         let state = STORE.state().get('pages').page03;
-         return state.section=='root' ? 'hide' : '';
-     }
-     this.sectionCode = ()=> {
-         let state = STORE.state().get('pages').page03;
-         return state.section=='root' ? '' : state.section;
-     }
-     this.on('update', ()=>{
-         let state = STORE.state().get('pages').page03;
-         let section = state.section=='root' ? 'operators-root' : state.section;
-         let tags = this.tags;
-
-         for (var k in tags) {
-             let tag = tags[k];
-             if (tag.opts && tag.opts.type && tag.opts.type=='page-section') {
-                 let element = tag.root;
-                 let classes = element.getAttribute('class');
-                 element.setAttribute('class', (k==section ? '' : 'hide'))
-             }
-         }
-     });
-    </script>
+        <section-contents no="4" title="Operator: *-internal">
+            <p>
+                以下の Generic Function を利用してカスタマイズできます。
+            </p>
+            <table class="table is-bordered is-striped is-narrow is-hoverable">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>serialize</th>
+                        <th>deserialize</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>XML</th>
+                        <td><a href="#page03/serialize-xml-internal">serialize-xml-internal</a></td>
+                        <td><a href="#page03/deserialize-xml-internal">deserialize-xml-internal</a></td>
+                    </tr>
+                    <tr>
+                        <th>SEXP</th>
+                        <td><a href="#page03/serialize-sexp-internal">serialize-sexp-internal</a></td>
+                        <td><a href="#page03/deserialize-sexp-internal">deserialize-sexp-internal</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section-contents>
+    </section-container>
 </page03>

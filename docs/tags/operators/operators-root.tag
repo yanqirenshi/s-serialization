@@ -21,13 +21,6 @@
         </div>
     </section-3>
 
-    <section-3 title="データ・タイプ"  data={operators()}>
-        <div class="contents">
-            <p></p>
-            <serialize-type-matrix></serialize-type-matrix>
-        </div>
-    </section-3>
-
     <section-3 title="Dictionaries"  data={operators()}>
         <div class="contents">
             <operator-list data={opts.data}></operator-list>

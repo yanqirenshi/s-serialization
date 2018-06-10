@@ -2,6 +2,8 @@
     <page01 class="page {this.hide('page01')}"></page01>
     <page02 class="page {this.hide('page02')}"></page02>
     <page03 class="page {this.hide('page03')}"></page03>
+    <page04 class="page {this.hide('page04')}"></page04>
+    <page05 class="page {this.hide('page05')}"></page05>
 
     <menu></menu>
 

@@ -7,7 +7,7 @@
 
         <section-4 title="Description">
             <div class="contents">
-                <p><a href="#page03/serialize-xml-internal">serialize-xml-internal</a> をコールして object をXML(文字列)に変換します。</p>
+                <p><a href="#page05/serialize-xml-internal">serialize-xml-internal</a> をコールして object をXML(文字列)に変換します。</p>
                 <p>文字列に変換したものを stream に出力します。</p>
             </div>
         </section-4>
