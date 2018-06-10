@@ -6,7 +6,9 @@
   (:export #:serialize-xml
            #:serialize-xml-internal
            #:serializable-slots
-           #:deserialize-xml)
+           #:deserialize-xml
+           #:deserialize-xml-new-element-aux
+           #:deserialize-xml-finish-element-aux)
   (:export #:serialize-sexp
            #:serialize-sexp-internal
            #:deserialize-sexp

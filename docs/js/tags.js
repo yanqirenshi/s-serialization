@@ -80,7 +80,7 @@ riot.tag2('deserialize-xml-a', '<a href="#page03/deserialize-xml">DESERIALIZE-XM
 riot.tag2('deserialize-xml-internal-a', '<a href="#page03/deserialize-xml-internal">DESERIALIZE-XML-INTERNAL</a>', '', '', function(opts) {
 });
 
-riot.tag2('deserialize-xml', '<section-3 title="Function: DESERIALIZE-XML"> </section-3>', '', '', function(opts) {
+riot.tag2('deserialize-xml', '<section-3 title="Function: DESERIALIZE-XML"> </section-3> <section-3 title="コール・スタック"> <div class="contents"> <p> <pre>\ndeserialize-xml\n   |\n   `--- get-xml-parser-state\n           |\n           `---> s-xml:xml-parser-state\n                    |\n                    +---> deserialize-xml-text\n                    |\n                    +---> deserialize-xml-new-element --> deserialize-xml-new-element-aux\n                    |\n                    `---> deserialize-xml-finish-element --> deserialize-xml-finish-element-aux\n                </pre> </p> </div> </section-3>', '', '', function(opts) {
 });
 
 riot.tag2('get-xml-parser-state', '<section-3 title="Generic Function: GET-XML-PARSER-STATE"> </section-3>', '', '', function(opts) {

@@ -21,9 +21,9 @@ Author: satoshi iwasaki (yanqirenshi@gmail.com)
                 :components
                 ((:file "package")
                  (:file "serialization")
-                 (:file "xml")
                  (:module "xml"
-                  :components ((:file "xml")
+                  :components ((:file "util")
+                               (:file "serialize")
                                (:module "serialize-xml-internal"
                                 :components
                                         ((:file "integer")
@@ -38,8 +38,7 @@ Author: satoshi iwasaki (yanqirenshi@gmail.com)
                                          (:file "sequence")
                                          (:file "hash-table")
                                          (:file "structure-object")
-                                         (:file "standard-object"))
-                                        (:file "deserialize-sexp-internal.lisp"))
+                                         (:file "standard-object")))
                                (:file "deserialize")))
                  (:module "sexp"
                   :components
@@ -56,8 +55,7 @@ Author: satoshi iwasaki (yanqirenshi@gmail.com)
                              (:file "hash-table")
                              (:file "structure-object")
                              (:file "standard-object")))
-                   (:file "deserialize-sexp-internal.lisp"))
-                   (:file "deserialize-sexp-internal.lisp")))))
+                   (:file "deserialize-sexp-internal"))))))
   :description ""
   :long-description
   #.(with-open-file (stream (merge-pathnames

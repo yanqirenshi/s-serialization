@@ -1,8 +1,5 @@
 (in-package :s-serialization)
 
-(defun get-attribute-value (name attributes)
-  (cdr (assoc name attributes :test #'eq)))
-
 (defun deserialize-xml-new-element (name attributes seed)
   (declare (ignore seed) (special *deserialized-objects*))
   (case name
@@ -87,3 +84,19 @@
 (defun deserialize-xml-text (string seed)
   (declare (ignore seed))
   string)
+
+(defgeneric get-xml-parser-state (serialization-state)
+  (:method ((serialization-state serialization-state))
+    (with-slots (xml-parser-state) serialization-state
+      (or xml-parser-state
+          (setf xml-parser-state (make-instance 's-xml:xml-parser-state
+                                                :new-element-hook #'deserialize-xml-new-element
+                                                :finish-element-hook #'deserialize-xml-finish-element
+                                                :text-hook #'deserialize-xml-text))))))
+
+(defun deserialize-xml (stream &optional (serialization-state (make-serialization-state)))
+  "Read and return an XML serialized version of a lisp object from stream, optionally reusing a serialization state"
+  (reset serialization-state)
+  (let ((*deserialized-objects* (get-hashtable serialization-state)))
+    (declare (special *deserialized-objects*))
+    (car (s-xml:start-parse-xml stream (get-xml-parser-state serialization-state)))))

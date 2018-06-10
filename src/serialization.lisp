@@ -35,15 +35,6 @@
    (hashtable :reader get-hashtable :initform (make-hash-table :test 'eq :size 1024 :rehash-size 2.0))
    (known-slots :initform (make-hash-table))))
 
-(defgeneric get-xml-parser-state (serialization-state)
-  (:method ((serialization-state serialization-state))
-    (with-slots (xml-parser-state) serialization-state
-      (or xml-parser-state
-          (setf xml-parser-state (make-instance 's-xml:xml-parser-state
-                                                :new-element-hook #'deserialize-xml-new-element
-                                                :finish-element-hook #'deserialize-xml-finish-element
-                                                :text-hook #'deserialize-xml-text))))))
-
 (defgeneric reset (serialization-state)
   (:documentation "")
   (:method ((serialization-state serialization-state))
