@@ -1,36 +1,37 @@
 <app>
-    <page01 class="page {this.hide('page01')}"></page01>
-    <page02 class="page {this.hide('page02')}"></page02>
-    <page03 class="page {this.hide('page03')}"></page03>
-    <page04 class="page {this.hide('page04')}"></page04>
-    <page05 class="page {this.hide('page05')}"></page05>
+    <menu-bar brand={{label:'RT'}} site={site()} moves={[]}></menu-bar>
 
-    <menu></menu>
+    <div ref="page-area"></div>
 
     <style>
-     app > .page.hide { display: none; }
+     app > .page {
+         width: 100vw;
+         height: 100vh;
+         display: block;
+     }
+     .hide { display: none; }
     </style>
 
     <script>
-     this.hide = (code)=>{
-         let pages = STORE.state().get('pages');
-         return pages[code].active ? '' : 'hide'
+     this.site = () => {
+         return STORE.state().get('site');
      };
 
      STORE.subscribe((action)=>{
-         if(action.type=='MOVE-PAGE')
-             this.update();
-     });
+         if (action.type!='MOVE-PAGE')
+             return;
 
-     this.on('mount', function () {
-         Metronome.start();
+         let tags= this.tags;
 
-         if (location.hash=='')
-             location.hash='#page01'
-     });
+         tags['menu-bar'].update();
+         ROUTER.switchPage(this, this.refs['page-area'], this.site());
+     })
 
      window.addEventListener('resize', (event) => {
          this.update();
      });
+
+     if (location.hash=='')
+         location.hash='#page01'
     </script>
 </app>

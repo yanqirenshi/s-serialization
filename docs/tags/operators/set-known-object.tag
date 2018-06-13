@@ -1,4 +1,3 @@
 <set-known-object>
-    <section-3 title="Generic Function: SET-KNOWN-OBJECT">
-    </section-3>
+    <section-header-with-breadcrumb title="Generic Function: SET-KNOWN-OBJECT"></section-header-with-breadcrumb>
 </set-known-object>

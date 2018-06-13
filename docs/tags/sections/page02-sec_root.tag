@@ -1,11 +1,5 @@
-<page02>
-    <section-header title="OPERATORS">
-        <h2 class="subtitle">
-            <p class="{opts.subtitleHide}">
-                永続化
-            </p>
-        </h2>
-    </section-header>
+<page02-sec_root>
+    <section-header title="永続化"></section-header>
 
     <section-container title="概要">
         <section-contents>
@@ -90,4 +84,4 @@
             <section-contents title="sexp"></section-contents>
         </section-container>
     </section-container>
-</page02>
+</page02-sec_root>

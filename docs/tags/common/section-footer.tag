@@ -2,13 +2,19 @@
     <footer class="footer">
         <div class="container">
             <div class="content has-text-centered">
-                Footer ........
+                <p>
+                </p>
             </div>
         </div>
     </footer>
+
     <style>
-     section-footer > footer.footer{
-         background: #eeeeee;
+     section-footer > .footer {
+         padding-top: 13px;
+         padding-bottom: 13px;
+         height: 66px;
+         background: #fef4f4;
+         opacity: 0.7;
      }
     </style>
 </section-footer>

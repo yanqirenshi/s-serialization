@@ -1,4 +1,3 @@
 <known-object-id>
-    <section-3 title="Generic Function: KNOWN-OBJECT-ID">
-    </section-3>
+    <section-header-with-breadcrumb title="Generic Function: KNOWN-OBJECT-ID"></section-header-with-breadcrumb>
 </known-object-id>

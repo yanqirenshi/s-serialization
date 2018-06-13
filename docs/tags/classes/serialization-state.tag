@@ -1,20 +1,13 @@
 <serialization-state>
-    <section-3 title="Class: SERIALIZATION-STATE">
-        <h2 class="subtitle">
-        </h2>
-    </section-3>
+    <section-header-with-breadcrumb title="Class: SERIALIZATION-STATE"></section-header-with-breadcrumb>
 
-    <section-3 title="Description">
-        <h2 class="subtitle"></h2>
+    <section-container title="Description">
+        <section-contents>
+        </section-contents>
+    </section-container>
 
-        <div class="contents">
-        </div>
-    </section-3>
-
-    <section-3 title="Slots">
-        <h2 class="subtitle"></h2>
-
-        <div class="contents">
+    <section-container title="Slots">
+        <section-contents>
             <table class="table is-bordered is-striped is-narrow is-hoverable">
                 <thead>
                     <tr>
@@ -30,6 +23,6 @@
                     <tr> <th>known-slots</th>      <td>hash-table</td> <td></td> </tr>
                 </tbody>
             </table>
-        </div>
-    </section-3>
+        </section-contents>
+    </section-container>
 </serialization-state>

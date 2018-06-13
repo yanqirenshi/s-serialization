@@ -1,4 +1,3 @@
 <reset-known-slots>
-    <section-3 title="Generic Function: RESET-KNOWN-SLOTS">
-    </section-3>
+    <section-header-with-breadcrumb title="Generic Function: RESET-KNOWN-SLOTS"></section-header-with-breadcrumb>
 </reset-known-slots>

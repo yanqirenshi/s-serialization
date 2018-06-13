@@ -1,9 +1,6 @@
-<page03>
-    <section-header title="カスタマイズ">
-        <h2 class="subtitle">
-            カスタマイズの方法について説明します。
-        </h2>
-    </section-header>
+<page03-sec_root>
+    <section-header title="カスタマイズ"
+                    subtitle="カスタマイズの方法について説明します。"></section-header>
 
     <section-container title="概要">
         <section-contents>
@@ -63,4 +60,4 @@
             </table>
         </section-contents>
     </section-container>
-</page03>
+</page03-sec_root>

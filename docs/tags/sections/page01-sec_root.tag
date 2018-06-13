@@ -1,9 +1,6 @@
-<page01>
-    <section-header title="S-SERIALIZATION">
-        <h2 class="subtitle">
-            データ/オブジェクトをシリアライズ/デシリアライズするためのライブラリです。。
-        </h2>
-    </section-header>
+<page01-sec_root>
+    <section-header title="S-SERIALIZATION"
+                    subtitle="データ/オブジェクトをシリアライズ/デシリアライズするためのライブラリです。"></section-header>
 
     <section-container title="概要">
         <section-contents>
@@ -53,4 +50,13 @@
     </section-container>
 
     <section-footer></section-footer>
-</page01>
+
+    <script>
+     this.sections = () => {
+         let pages = STORE.state().get('site').pages;
+         let page = pages.find((d) => { return d.code=='page01'; });
+
+         return page.sections;
+     }
+    </script>
+</page01-sec_root>

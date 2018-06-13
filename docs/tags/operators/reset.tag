@@ -1,4 +1,3 @@
 <reset>
-    <section-3 title="Generic Function: RESET">
-    </section-3>
+    <section-header-with-breadcrumb title="Generic Function: RESET"></section-header-with-breadcrumb>
 </reset>

@@ -1,11 +1,11 @@
 <deserialize-xml>
-    <section-3 title="Function: DESERIALIZE-XML">
-    </section-3>
+    <section-header-with-breadcrumb title="Function: DESERIALIZE-XML"></section-header-with-breadcrumb>
 
-    <section-3 title="コール・スタック">
-        <div class="contents">
-            <p>
-                <pre>
+    <section-container title="コール・スタック">
+        <section-contents>
+            <div class="contents">
+                <p>
+                    <pre>
 deserialize-xml
    |
    `--- get-xml-parser-state
@@ -17,8 +17,9 @@ deserialize-xml
                     +---> deserialize-xml-new-element --> deserialize-xml-new-element-aux
                     |
                     `---> deserialize-xml-finish-element --> deserialize-xml-finish-element-aux
-                </pre>
-            </p>
-        </div>
-    </section-3>
+                    </pre>
+                </p>
+            </div>
+        </section-contents>
+    </section-container>
 </deserialize-xml>

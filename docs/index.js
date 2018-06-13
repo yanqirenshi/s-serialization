@@ -26,7 +26,7 @@ var STORE = new Store(REDUCER).init();
 /* *********** */
 /*  Metronome  */
 /* *********** */
-let Metronome = new Vanilla_metronome({
+var Metronome = new Vanilla_metronome({
     interval: 1000 * 10,
     tick: function (count) {
          // ACTIONS.fetchData();
@@ -34,12 +34,7 @@ let Metronome = new Vanilla_metronome({
 });
 
 /* ****** */
-/*  main  */
+/*  Router  */
 /* ****** */
-route.start(function () {
-    let hash = location.hash;
-    let len = hash.length;
-    if (len==0)
-        return '/';
-    return hash.substring(1);
-}());
+var ROUTER = new Router(STORE, ACTIONS);
+ROUTER.start();

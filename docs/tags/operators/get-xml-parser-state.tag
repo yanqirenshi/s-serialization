@@ -1,4 +1,3 @@
 <get-xml-parser-state>
-    <section-3 title="Generic Function: GET-XML-PARSER-STATE">
-    </section-3>
+    <section-header-with-breadcrumb title="Generic Function: GET-XML-PARSER-STATE"></section-header-with-breadcrumb>
 </get-xml-parser-state>

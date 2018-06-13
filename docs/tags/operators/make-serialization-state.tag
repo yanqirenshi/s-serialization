@@ -1,4 +1,3 @@
 <make-serialization-state>
-    <section-3 title="Function: MAKE-SERIALIZATION-STATE">
-    </section-3>
+    <section-header-with-breadcrumb title="Function: MAKE-SERIALIZATION-STATE"></section-header-with-breadcrumb>
 </make-serialization-state>
