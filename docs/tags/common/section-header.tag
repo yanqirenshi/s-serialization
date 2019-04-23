@@ -12,11 +12,7 @@
 
     <style>
      section-header > .section {
-         padding-top: 13px;
-         padding-bottom: 13px;
-         height: 66px;
-         background: #fef4f4;
-         margin-bottom: 33px;
+         background: #ffffff;
      }
     </style>
 </section-header>

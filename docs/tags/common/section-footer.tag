@@ -10,11 +10,9 @@
 
     <style>
      section-footer > .footer {
+         background: #ffffff;
          padding-top: 13px;
          padding-bottom: 13px;
-         height: 66px;
-         background: #fef4f4;
-         opacity: 0.7;
      }
     </style>
 </section-footer>

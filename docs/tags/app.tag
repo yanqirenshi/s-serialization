@@ -1,37 +1,40 @@
 <app>
+
     <menu-bar brand={{label:'RT'}} site={site()} moves={[]}></menu-bar>
 
-    <div ref="page-area"></div>
+    <app-page-area></app-page-area>
 
-    <style>
-     app > .page {
-         width: 100vw;
-         height: 100vh;
-         display: block;
-     }
-     .hide { display: none; }
-    </style>
+    <section-footer></section-footer>
 
     <script>
      this.site = () => {
          return STORE.state().get('site');
      };
+     this.updateMenuBar = () => {
+         if (this.tags['menu-bar'])
+             this.tags['menu-bar'].update();
+     }
+    </script>
+
+
+    <script>
+     /* this.on('mount', () => {
+      *     ROUTER.rootElement(this.refs['page-area']);
+      * }); */
 
      STORE.subscribe((action)=>{
-         if (action.type!='MOVE-PAGE')
-             return;
-
-         let tags= this.tags;
-
-         tags['menu-bar'].update();
-         ROUTER.switchPage(this, this.refs['page-area'], this.site());
-     })
+         if (action.type=='MOVE-PAGE') {
+             this.updateMenuBar();
+             this.tags['app-page-area'].update({ opts: { route: action.route }});
+         }
+     });
 
      window.addEventListener('resize', (event) => {
          this.update();
      });
 
      if (location.hash=='')
-         location.hash='#page01'
+         location.hash=STORE.get('site.active_page');
     </script>
+
 </app>
