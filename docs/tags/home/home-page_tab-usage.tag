@@ -6,7 +6,10 @@
             <h2 class="subtitle"></h2>
 
             <div class="contents">
-                <pre>(<a href="#page03/serialize-xml">serialize-xml</a> objects out (serialization-state pool))</pre>
+                <p><pre>(<a href="#page03/serialize-xml">serialize-xml</a> objects stream (serialization-state pool))</pre></p>
+                <br/>
+                <p>今後は以下のようにする方向。</p>
+                <p><pre>(hole:black stream objects :state (serialization-state pool))</pre></p>
             </div>
         </div>
     </section>
@@ -17,7 +20,10 @@
             <h2 class="subtitle"></h2>
 
             <div class="contents">
-                <pre>(<a href="#page03/deserialize-xml">deserialize-xml</a> in (serialization-state pool))</pre>
+                <pre>(<a href="#page03/deserialize-xml">deserialize-xml</a> stream (serialization-state pool))</pre>
+                <br/>
+                <p>今後は以下のようにする方向。</p>
+                <p><pre>(hole:white stream :state (serialization-state pool))</pre></p>
             </div>
         </div>
     </section>

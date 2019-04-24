@@ -1,5 +1,6 @@
 (in-package :cl-user)
 (defpackage :s-serialization
+  (:nicknames :hole)
   (:use :cl)
   (:export #:make-serialization-state
            #:reset-known-slots)

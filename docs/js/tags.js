@@ -244,6 +244,10 @@ riot.tag2('home-page_tab-operators', '<section class="section"> <div class="cont
      };
 });
 
+riot.tag2('home-page_tab-packages', '<section class="section"> <div class="container"> <h1 class="title">List</h1> <h2 class="subtitle"></h2> <div class="contents"> <table class="table is-bordered is-striped is-narrow is-hoverable"> <thead> <tr> <th>Symbol</th> <th>Description</th> </tr> </thead> <tbody> <tr each="{obj in packages}"> <td>{obj.name}</td> <td>{obj.description}</td> </tr> </tbody> </table> </div> </div> </section>', '', '', function(opts) {
+     this.packages = STORE.get('packages');
+});
+
 riot.tag2('home-page_tab-readme', '<section class="section"> <div class="container"> <h1 class="title">Description</h1> <h2 class="subtitle"></h2> <div class="contents"> <p>データ/オブジェクトをシリアライズ/デシリアライズするためのライブラリです。</p> </div> <section class="section"> <div class="container"> <h1 class="title is-4">生い立ち</h1> <h2 class="subtitle"></h2> <div class="contents"> <p> <a href="https://bitbucket.org/skypher/cl-prevalence">CL-PREVALENCE</a> から切り出したものです。 </p> <p> <a href="https://bitbucket.org/skypher/cl-prevalence">CL-PREVALENCE</a> からフォークした 拙作 の <a href="https://github.com/yanqirenshi/upanishad">UPANISHAD</a> を書く上で一旦切り出しました。 </p> </div> </div> </section> <section class="section"> <div class="container"> <h1 class="title is-4">出来ること</h1> <h2 class="subtitle"></h2> <div class="contents"> <p>以下のフォーマットにシリアライズ/デシリアライズ出来ます。</p> <ol style="margin-left:3.0rem;"> <li>XML</li> <li><a href="https://www.emacswiki.org/emacs/Sexp#sexp">S式</a></li> </ol> </div> </div> </section> </div> </section> <section class="section"> <div class="container"> <h1 class="title">Authors</h1> <h2 class="subtitle"></h2> <div class="contents"> <p>yanqirenshi@gmail.com</p> </div> </div> </section> <section class="section"> <div class="container"> <h1 class="title">Licence</h1> <h2 class="subtitle"></h2> <div class="contents"> <p>LLGPL</p> </div> </div> </section>', '', '', function(opts) {
      this.sections = () => {
          let pages = STORE.state().get('site').pages;
@@ -253,15 +257,16 @@ riot.tag2('home-page_tab-readme', '<section class="section"> <div class="contain
      }
 });
 
-riot.tag2('home-page_tab-usage', '<section class="section"> <div class="container"> <h1 class="title">シリアライズ</h1> <h2 class="subtitle"></h2> <div class="contents"> <pre>(<a href="#page03/serialize-xml">serialize-xml</a> objects out (serialization-state pool))</pre> </div> </div> </section> <section class="section"> <div class="container"> <h1 class="title">デシリアライズ</h1> <h2 class="subtitle"></h2> <div class="contents"> <pre>(<a href="#page03/deserialize-xml">deserialize-xml</a> in (serialization-state pool))</pre> </div> </div> </section> <section class="section"> <div class="container"> <h1 class="title">Test</h1> <h2 class="subtitle"></h2> <div class="contents"> <p> <pre>(asdf:test-system :s-serialization-test)</pre> </p> </div> </div> </section>', '', '', function(opts) {
+riot.tag2('home-page_tab-usage', '<section class="section"> <div class="container"> <h1 class="title">シリアライズ</h1> <h2 class="subtitle"></h2> <div class="contents"> <p><pre>(<a href="#page03/serialize-xml">serialize-xml</a> objects stream (serialization-state pool))</pre></p> <br> <p>今後は以下のようにする方向。</p> <p><pre>(hole:black stream objects :state (serialization-state pool))</pre></p> </div> </div> </section> <section class="section"> <div class="container"> <h1 class="title">デシリアライズ</h1> <h2 class="subtitle"></h2> <div class="contents"> <pre>(<a href="#page03/deserialize-xml">deserialize-xml</a> stream (serialization-state pool))</pre> <br> <p>今後は以下のようにする方向。</p> <p><pre>(hole:white stream :state (serialization-state pool))</pre></p> </div> </div> </section> <section class="section"> <div class="container"> <h1 class="title">Test</h1> <h2 class="subtitle"></h2> <div class="contents"> <p> <pre>(asdf:test-system :s-serialization-test)</pre> </p> </div> </div> </section>', '', '', function(opts) {
 });
 
-riot.tag2('home_page', '<section-header title="Hole (S-SERIALIZATION)"></section-header> <div style="padding-left:55px;"> <page-tabs core="{page_tabs}" callback="{clickTab}"></page-tabs> </div> <div> <home-page_tab-readme class="hide"></home-page_tab-readme> <home-page_tab-usage class="hide"></home-page_tab-usage> <home-page_tab-classes class="hide"></home-page_tab-classes> <home-page_tab-operators class="hide"></home-page_tab-operators> </div>', '', '', function(opts) {
+riot.tag2('home_page', '<section-header title="Hole (S-SERIALIZATION)"></section-header> <div style="padding-left:55px;"> <page-tabs core="{page_tabs}" callback="{clickTab}"></page-tabs> </div> <div> <home-page_tab-readme class="hide"></home-page_tab-readme> <home-page_tab-usage class="hide"></home-page_tab-usage> <home-page_tab-classes class="hide"></home-page_tab-classes> <home-page_tab-operators class="hide"></home-page_tab-operators> <home-page_tab-packages class="hide"></home-page_tab-packages> </div>', '', '', function(opts) {
      this.page_tabs = new PageTabs([
          {code: 'readme',    label: 'README',    tag: 'home-page_tab-readme' },
          {code: 'usage',     label: 'Usage',     tag: 'home-page_tab-usage' },
-         {code: 'classes',   label: 'Classes',   tag: 'home-page_tab-classes' },
          {code: 'operators', label: 'Operators', tag: 'home-page_tab-operators' },
+         {code: 'classes',   label: 'Classes',   tag: 'home-page_tab-classes' },
+         {code: 'packages',  label: 'Packages',  tag: 'home-page_tab-packages' },
      ]);
 
      this.on('mount', () => {

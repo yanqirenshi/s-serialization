@@ -11,14 +11,16 @@
         <home-page_tab-usage     class="hide"></home-page_tab-usage>
         <home-page_tab-classes   class="hide"></home-page_tab-classes>
         <home-page_tab-operators class="hide"></home-page_tab-operators>
+        <home-page_tab-packages  class="hide"></home-page_tab-packages>
     </div>
 
     <script>
      this.page_tabs = new PageTabs([
          {code: 'readme',    label: 'README',    tag: 'home-page_tab-readme' },
          {code: 'usage',     label: 'Usage',     tag: 'home-page_tab-usage' },
-         {code: 'classes',   label: 'Classes',   tag: 'home-page_tab-classes' },
          {code: 'operators', label: 'Operators', tag: 'home-page_tab-operators' },
+         {code: 'classes',   label: 'Classes',   tag: 'home-page_tab-classes' },
+         {code: 'packages',  label: 'Packages',  tag: 'home-page_tab-packages' },
      ]);
 
      this.on('mount', () => {
