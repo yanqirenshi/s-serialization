@@ -19,11 +19,14 @@ Author: satoshi iwasaki (yanqirenshi@gmail.com)
   :depends-on (:s-xml)
   :components ((:module "src"
                 :components
-                ((:file "package")
-                 (:file "serialization")
+                ((:module "utility"
+                  :components ((:file "package")
+                               (:file "utilities")))
+                 (:file "package")
+                 (:file "serialization-state")
+                 (:file "serializable-slots")
                  (:module "xml"
-                  :components ((:file "util")
-                               (:file "serialize")
+                  :components ((:file "serialize")
                                (:module "serialize-xml-internal"
                                 :components
                                         ((:file "integer")
@@ -42,7 +45,8 @@ Author: satoshi iwasaki (yanqirenshi@gmail.com)
                                (:file "deserialize")))
                  (:module "sexp"
                   :components
-                  ((:file "sexp")
+                  ((:file "serialize")
+                   (:file "deserialize")
                    (:module "serialize-sexp-internal"
                     :components
                             ((:file "null")
@@ -54,8 +58,7 @@ Author: satoshi iwasaki (yanqirenshi@gmail.com)
                              (:file "sequence")
                              (:file "hash-table")
                              (:file "structure-object")
-                             (:file "standard-object")))
-                   (:file "deserialize-sexp-internal"))))))
+                             (:file "standard-object"))))))))
   :description ""
   :long-description
   #.(with-open-file (stream (merge-pathnames

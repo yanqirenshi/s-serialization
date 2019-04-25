@@ -44,3 +44,12 @@
                    (rplaca conspair (deserialize-sexp-internal cons-car deserialized-objects))
                    (rplacd conspair (deserialize-sexp-internal cons-cdr deserialized-objects)))))
         (:ref (gethash (rest sexp) deserialized-objects)))))
+
+
+(defun deserialize-sexp (stream &optional (serialization-state (make-serialization-state)))
+  "Read and return an s-expression serialized version of a lisp object from stream, optionally reusing a serialization state"
+  (reset serialization-state)
+  (let ((sexp (read stream nil :eof)))
+    (if (eq sexp :eof)
+        nil
+        (deserialize-sexp-internal sexp (get-hashtable serialization-state)))))

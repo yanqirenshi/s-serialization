@@ -1,6 +1,7 @@
 (in-package :cl-user)
 (defpackage :s-serialization
-  (:use :cl)
+  (:nicknames :hole)
+  (:use :cl :hole.utility)
   (:export #:make-serialization-state
            #:reset-known-slots)
   (:export #:serialize-xml
@@ -13,5 +14,7 @@
            #:serialize-sexp-internal
            #:deserialize-sexp
            #:deserialize-sexp-internal)
+  (:export #:black
+           #:white)
   (:documentation "XML and s-expression based serialization for Common Lisp and CLOS"))
 (in-package :s-serialization)
