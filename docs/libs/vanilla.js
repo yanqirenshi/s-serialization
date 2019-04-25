@@ -1,1 +1,0 @@
-/home/shinrabanshou/prj/fg/js/vanilla.js/dist/vanilla.js
